@@ -1,0 +1,369 @@
+Microsoft Windows [Versión 10.0.17134.523]
+(c) 2018 Microsoft Corporation. Todos los derechos reservados.
+
+C:\Users\Ariel>mysqlsh
+MySQL Shell 8.0.14
+
+
+
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+
+ MySQL  SQL > \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Fetching schema names for autocompletion... Press ^C to stop.
+Your MySQL connection id is 8
+Server version: 8.0.14 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+
+ MySQL  localhost:3306 ssl  SQL > show tables;
+ERROR: 1046 (3D000): No database selected
+
+ MySQL  localhost:3306 ssl  SQL > show tables;
+ERROR: 1046 (3D000): No database selected
+
+ MySQL  localhost:3306 ssl  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| datoscoches        |
+| dbclientes         |
+| eva_1              |
+| information_schema |
+| mysql              |
+| performance_schema |
+| proyectotap        |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+10 rows in set (0.0014 sec)
+
+ MySQL  localhost:3306 ssl  SQL > use eva_1;
+Default schema set to `eva_1`.
+Fetching table and column names from `eva_1` for auto-completion... Press ^C to stop.
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > create table empleados(
+                                      -> id int,
+                                      -> nombre varchar(50),
+                                      -> apellido varchar(50),
+                                      -> fecha_nac date,
+                                      -> rfc int,
+                                      -> ciudad_nac text,
+                                      -> estado int,
+                                      -> num_tel varchar(50));
+Query OK, 0 rows affected (0.8517 sec)
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > desc empleados;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| id         | int(11)     | YES  |     | NULL    |       |
+| nombre     | varchar(50) | YES  |     | NULL    |       |
+| apellido   | varchar(50) | YES  |     | NULL    |       |
+| fecha_nac  | date        | YES  |     | NULL    |       |
+| rfc        | int(11)     | YES  |     | NULL    |       |
+| ciudad_nac | text        | YES  |     | NULL    |       |
+| estado     | int(11)     | YES  |     | NULL    |       |
+| num_tel    | varchar(50) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+8 rows in set (0.0027 sec)
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > alter table empleados rename column num_tel to numero_tel;
+Query OK, 0 rows affected (0.2401 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > desc empleados;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| id         | int(11)     | YES  |     | NULL    |       |
+| nombre     | varchar(50) | YES  |     | NULL    |       |
+| apellido   | varchar(50) | YES  |     | NULL    |       |
+| fecha_nac  | date        | YES  |     | NULL    |       |
+| rfc        | int(11)     | YES  |     | NULL    |       |
+| ciudad_nac | text        | YES  |     | NULL    |       |
+| estado     | int(11)     | YES  |     | NULL    |       |
+| numero_tel | varchar(50) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+8 rows in set (0.0015 sec)
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > alter table empleados rename column numero_tel to num_tel;
+Query OK, 0 rows affected (0.1641 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > desc empleados;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| id         | int(11)     | YES  |     | NULL    |       |
+| nombre     | varchar(50) | YES  |     | NULL    |       |
+| apellido   | varchar(50) | YES  |     | NULL    |       |
+| fecha_nac  | date        | YES  |     | NULL    |       |
+| rfc        | int(11)     | YES  |     | NULL    |       |
+| ciudad_nac | text        | YES  |     | NULL    |       |
+| estado     | int(11)     | YES  |     | NULL    |       |
+| num_tel    | varchar(50) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+8 rows in set (0.0017 sec)
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > alter table empleados drop num_tel;
+Query OK, 0 rows affected (1.3050 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > desc empleados;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| id         | int(11)     | YES  |     | NULL    |       |
+| nombre     | varchar(50) | YES  |     | NULL    |       |
+| apellido   | varchar(50) | YES  |     | NULL    |       |
+| fecha_nac  | date        | YES  |     | NULL    |       |
+| rfc        | int(11)     | YES  |     | NULL    |       |
+| ciudad_nac | text        | YES  |     | NULL    |       |
+| estado     | int(11)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+7 rows in set (0.0015 sec)
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > alter table empleados add num_tel varchar(50) after estado;
+Query OK, 0 rows affected (0.5107 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > desc empleados;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| id         | int(11)     | YES  |     | NULL    |       |
+| nombre     | varchar(50) | YES  |     | NULL    |       |
+| apellido   | varchar(50) | YES  |     | NULL    |       |
+| fecha_nac  | date        | YES  |     | NULL    |       |
+| rfc        | int(11)     | YES  |     | NULL    |       |
+| ciudad_nac | text        | YES  |     | NULL    |       |
+| estado     | int(11)     | YES  |     | NULL    |       |
+| num_tel    | varchar(50) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+8 rows in set (0.0329 sec)
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > alter table empleados change rfc rfc varchar(13);
+Query OK, 0 rows affected (2.2003 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > desc empleados;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| id         | int(11)     | YES  |     | NULL    |       |
+| nombre     | varchar(50) | YES  |     | NULL    |       |
+| apellido   | varchar(50) | YES  |     | NULL    |       |
+| fecha_nac  | date        | YES  |     | NULL    |       |
+| rfc        | varchar(13) | YES  |     | NULL    |       |
+| ciudad_nac | text        | YES  |     | NULL    |       |
+| estado     | int(11)     | YES  |     | NULL    |       |
+| num_tel    | varchar(50) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+8 rows in set (0.0020 sec)
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > alter table  empleados add nss varchar(20) after rfc;
+Query OK, 0 rows affected (1.0621 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > desc empleados;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| id         | int(11)     | YES  |     | NULL    |       |
+| nombre     | varchar(50) | YES  |     | NULL    |       |
+| apellido   | varchar(50) | YES  |     | NULL    |       |
+| fecha_nac  | date        | YES  |     | NULL    |       |
+| rfc        | varchar(13) | YES  |     | NULL    |       |
+| nss        | varchar(20) | YES  |     | NULL    |       |
+| ciudad_nac | text        | YES  |     | NULL    |       |
+| estado     | int(11)     | YES  |     | NULL    |       |
+| num_tel    | varchar(50) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+9 rows in set (0.0016 sec)
+
+ MySQL  localhost:3306 ssl  eva_1  SQL >  alter table empleados add pais text after estado;
+Query OK, 0 rows affected (1.1311 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > desc empleados;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| id         | int(11)     | YES  |     | NULL    |       |
+| nombre     | varchar(50) | YES  |     | NULL    |       |
+| apellido   | varchar(50) | YES  |     | NULL    |       |
+| fecha_nac  | date        | YES  |     | NULL    |       |
+| rfc        | varchar(13) | YES  |     | NULL    |       |
+| nss        | varchar(20) | YES  |     | NULL    |       |
+| ciudad_nac | text        | YES  |     | NULL    |       |
+| estado     | int(11)     | YES  |     | NULL    |       |
+| pais       | text        | YES  |     | NULL    |       |
+| num_tel    | varchar(50) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+10 rows in set (0.0015 sec)
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > alter table empleados rename num_tel to celular;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to celular' at line 1
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > alter table empleados rename column num_tel to celular;
+Query OK, 0 rows affected (0.2293 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > desc empleados;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| id         | int(11)     | YES  |     | NULL    |       |
+| nombre     | varchar(50) | YES  |     | NULL    |       |
+| apellido   | varchar(50) | YES  |     | NULL    |       |
+| fecha_nac  | date        | YES  |     | NULL    |       |
+| rfc        | varchar(13) | YES  |     | NULL    |       |
+| nss        | varchar(20) | YES  |     | NULL    |       |
+| ciudad_nac | text        | YES  |     | NULL    |       |
+| estado     | int(11)     | YES  |     | NULL    |       |
+| pais       | text        | YES  |     | NULL    |       |
+| celular    | varchar(50) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+10 rows in set (0.0017 sec)
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > alter table empleado add tel_fijo varchar(50);
+ERROR: 1146 (42S02): Table 'eva_1.empleado' doesn't exist
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > alter table empleados add tel_fijo varchar(50);
+Query OK, 0 rows affected (0.5779 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > desc empleados;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| id         | int(11)     | YES  |     | NULL    |       |
+| nombre     | varchar(50) | YES  |     | NULL    |       |
+| apellido   | varchar(50) | YES  |     | NULL    |       |
+| fecha_nac  | date        | YES  |     | NULL    |       |
+| rfc        | varchar(13) | YES  |     | NULL    |       |
+| nss        | varchar(20) | YES  |     | NULL    |       |
+| ciudad_nac | text        | YES  |     | NULL    |       |
+| estado     | int(11)     | YES  |     | NULL    |       |
+| pais       | text        | YES  |     | NULL    |       |
+| celular    | varchar(50) | YES  |     | NULL    |       |
+| tel_fijo   | varchar(50) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+11 rows in set (0.0017 sec)
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > alter table empleados id_depto int after id;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'id_depto int after id' at line 1
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > alter table empleados add id_depto int after id;
+Query OK, 0 rows affected (1.2287 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > desc empleados;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| id         | int(11)     | YES  |     | NULL    |       |
+| id_depto   | int(11)     | YES  |     | NULL    |       |
+| nombre     | varchar(50) | YES  |     | NULL    |       |
+| apellido   | varchar(50) | YES  |     | NULL    |       |
+| fecha_nac  | date        | YES  |     | NULL    |       |
+| rfc        | varchar(13) | YES  |     | NULL    |       |
+| nss        | varchar(20) | YES  |     | NULL    |       |
+| ciudad_nac | text        | YES  |     | NULL    |       |
+| estado     | int(11)     | YES  |     | NULL    |       |
+| pais       | text        | YES  |     | NULL    |       |
+| celular    | varchar(50) | YES  |     | NULL    |       |
+| tel_fijo   | varchar(50) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+12 rows in set (0.0018 sec)
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > alter table empleados add iniciales varchar(10) after apellido;
+Query OK, 0 rows affected (1.5519 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > desc empleados;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| id         | int(11)     | YES  |     | NULL    |       |
+| id_depto   | int(11)     | YES  |     | NULL    |       |
+| nombre     | varchar(50) | YES  |     | NULL    |       |
+| apellido   | varchar(50) | YES  |     | NULL    |       |
+| iniciales  | varchar(10) | YES  |     | NULL    |       |
+| fecha_nac  | date        | YES  |     | NULL    |       |
+| rfc        | varchar(13) | YES  |     | NULL    |       |
+| nss        | varchar(20) | YES  |     | NULL    |       |
+| ciudad_nac | text        | YES  |     | NULL    |       |
+| estado     | int(11)     | YES  |     | NULL    |       |
+| pais       | text        | YES  |     | NULL    |       |
+| celular    | varchar(50) | YES  |     | NULL    |       |
+| tel_fijo   | varchar(50) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+13 rows in set (0.0016 sec)
+
+ MySQL  localhost:3306 ssl  eva_1  SQL >
+ MySQL  localhost:3306 ssl  eva_1  SQL >
+ insert into empleados
+                                      -> value (1,1,'Ariel','Estrada','AJ', '1998-10-19','aaaaaev','fwfwfwf','SHIHUAHUA','1','MX',123456,132456);
+Query OK, 1 row affected (0.1170 sec)
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > desc empleados;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| id         | int(11)     | YES  |     | NULL    |       |
+| id_depto   | int(11)     | YES  |     | NULL    |       |
+| nombre     | varchar(50) | YES  |     | NULL    |       |
+| apellido   | varchar(50) | YES  |     | NULL    |       |
+| iniciales  | varchar(10) | YES  |     | NULL    |       |
+| fecha_nac  | date        | YES  |     | NULL    |       |
+| rfc        | varchar(13) | YES  |     | NULL    |       |
+| nss        | varchar(20) | YES  |     | NULL    |       |
+| ciudad_nac | text        | YES  |     | NULL    |       |
+| estado     | int(11)     | YES  |     | NULL    |       |
+| pais       | text        | YES  |     | NULL    |       |
+| celular    | varchar(50) | YES  |     | NULL    |       |
+| tel_fijo   | varchar(50) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+13 rows in set (0.0017 sec)
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > select * from empleados;
++----+----------+--------+----------+-----------+------------+---------+---------+------------+--------+------+---------+----------+
+| id | id_depto | nombre | apellido | iniciales | fecha_nac  | rfc     | nss     | ciudad_nac | estado | pais | celular | tel_fijo |
++----+----------+--------+----------+-----------+------------+---------+---------+------------+--------+------+---------+----------+
+|  1 |        1 | Ariel  | Estrada  | AJ        | 1998-10-19 | aaaaaev | fwfwfwf | SHIHUAHUA  |      1 | MX   | 123456  | 132456   |
++----+----------+--------+----------+-----------+------------+---------+---------+------------+--------+------+---------+----------+
+1 row in set (0.0005 sec)
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > insert into empleados (id,nombre,apellidos)
+                                      -> values(2,'x','y'),(3,'hp','ph'),(4,'Mamado','nervo');
+ERROR: 1054 (42S22): Unknown column 'apellidos' in 'field list'
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > insert into empleados (id,nombre,apellido) values(2,'x','y'),(3,'hp','ph'),(4,'Mamado','nervo');
+Query OK, 3 rows affected (0.1792 sec)
+
+Records: 3  Duplicates: 0  Warnings: 0
+
+ MySQL  localhost:3306 ssl  eva_1  SQL > select * from empleados;
++----+----------+--------+----------+-----------+------------+---------+---------+------------+--------+------+---------+----------+
+| id | id_depto | nombre | apellido | iniciales | fecha_nac  | rfc     | nss     | ciudad_nac | estado | pais | celular | tel_fijo |
++----+----------+--------+----------+-----------+------------+---------+---------+------------+--------+------+---------+----------+
+|  1 |        1 | Ariel  | Estrada  | AJ        | 1998-10-19 | aaaaaev | fwfwfwf | SHIHUAHUA  |      1 | MX   | 123456  | 132456   |
+|  2 |     NULL | x      | y        | NULL      | NULL       | NULL    | NULL    | NULL       |   NULL | NULL | NULL    | NULL     |
+|  3 |     NULL | hp     | ph       | NULL      | NULL       | NULL    | NULL    | NULL       |   NULL | NULL | NULL    | NULL     |
+|  4 |     NULL | Mamado | nervo    | NULL      | NULL       | NULL    | NULL    | NULL       |   NULL | NULL | NULL    | NULL     |
++----+----------+--------+----------+-----------+------------+---------+---------+------------+--------+------+---------+----------+
+4 rows in set (0.0005 sec)
